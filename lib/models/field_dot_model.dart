@@ -13,8 +13,6 @@ class FieldDotModel extends FieldDot with _$FieldDotModel{
     @JsonKey(name: 'x') required int x,
     @JsonKey(name: 'y') required int y,
     @Default(false) bool disabled,
-    @Default(false) bool isStart,
-    @Default(false) bool isFinish,
 }) = _FieldDotModel;
 
   factory FieldDotModel.fromJson(Map<String, dynamic> json) => _$FieldDotModelFromJson(json);

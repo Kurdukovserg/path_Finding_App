@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:loggy/loggy.dart';
 import 'package:pathfinding/constants/strings.dart';
 import 'package:pathfinding/core/bloc/view.dart';
 import 'package:pathfinding/presentation/home/bloc/home_page_bloc.dart';
@@ -22,6 +23,7 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    _apiFieldController.text = Strings.wsapi;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.primary,
@@ -40,14 +42,19 @@ class _HomePageState extends State<HomePage> {
             BaseView<HomePageBloc, PageEvent, PageBlocState, PageNotification>(
           onNotification:
               (BuildContext context, PageNotification notification) {
-            switch (notification) {}
+            switch (notification) {
+              case FieldsFetchedNotification():
+                logInfo(notification.fields.first.field);
+            }
           },
           builder: (BuildContext context, PageBlocState state) {
             return switch (state) {
-              LoadingState() => throw UnimplementedError(),
-              // TODO: Handle this case.
-              ErrorState() => throw UnimplementedError(),
-              // TODO: Handle this case.
+              LoadingState() => Center(
+                  child: CircularProgressIndicator(),
+                ),
+              ErrorState() => Center(
+                  child: Text(state.errorMessage),
+                ),
               UpdatedState() => Column(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [

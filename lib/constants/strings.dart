@@ -6,4 +6,5 @@ class Strings {
   static const String startButtonLabel = 'Start counting process';
   static const String uriEmptyError = 'Base URI can not be empty';
   static const String wrongUriError = 'Base URI is wrong, try else';
+  static const String wsapi = 'https://flutter.webspark.dev/flutter/api';
 }

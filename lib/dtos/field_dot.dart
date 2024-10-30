@@ -11,17 +11,13 @@ abstract class FieldDot {
 
   bool get disabled;
 
-  bool get isStart;
-
-  bool get isFinish;
 
   FieldDotDto toDto() {
     return FieldDotDto(
       x: x,
       y: y,
       disabled: disabled,
-      isStart: isStart,
-      isFinish: isFinish,
+
     );
   }
 }
@@ -34,8 +30,6 @@ class FieldDotDto extends FieldDot with _$FieldDotDto {
     @Default(0) int x,
     @Default(0) int y,
     @Default(false) bool disabled,
-    @Default(false) bool isStart,
-    @Default(false) bool isFinish,
   }) = _FieldDotDto;
 
   @override
