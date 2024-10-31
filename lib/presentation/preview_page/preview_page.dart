@@ -69,9 +69,15 @@ class _PreviewPageState extends PageState<PreviewPage, PreviewPageBloc,
       }
     }
 
-    return GridView.count(
-      crossAxisCount: state.field.field.length,
-      children: tiles,
+    return Column(
+      children: [
+        GridView.count(
+          crossAxisCount: state.field.field.length,
+          shrinkWrap: true,
+          children: tiles,
+        ),
+        Text(state.result.resultingPath),
+      ],
     );
   }
 

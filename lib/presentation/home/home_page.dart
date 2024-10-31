@@ -24,7 +24,6 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    _apiFieldController.text = Strings.wsapi;
     return Scaffold(
       appBar: PFAppBar(
         title: Strings.homeScreenName,

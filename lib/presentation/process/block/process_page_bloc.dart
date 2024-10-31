@@ -68,7 +68,6 @@ class ProcessPageBloc
       _isButtonEnabled = true;
       _error = failure.toString();
       emit(_updatedState);
-      emitNotification(ResultsSent());
     }, (_) {
       _isResultSent = true;
       _error = null;
