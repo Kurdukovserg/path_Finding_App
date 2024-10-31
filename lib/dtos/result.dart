@@ -13,4 +13,5 @@ class PathFinderResult {
     }
   }
   PathFinderResult(this.id, this.pathNodes);
+
 }
