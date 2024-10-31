@@ -15,5 +15,8 @@ class ErrorState with _$ErrorState implements PageBlocState {
 
 @freezed
 class UpdatedState with _$UpdatedState implements PageBlocState {
-  const factory UpdatedState() = _UpdatedState;
+  const factory UpdatedState({
+    required PathFinderResult result,
+    required PathfinderField field,
+  }) = _UpdatedState;
 }

@@ -4,6 +4,7 @@ import 'package:loggy/loggy.dart';
 import 'package:pathfinding/constants/strings.dart';
 import 'package:pathfinding/core/bloc/notifiable_bloc.dart';
 import 'package:pathfinding/core/bloc/page.dart';
+import 'package:pathfinding/core/routing/router.dart';
 import 'package:pathfinding/presentation/components/app_bar.dart';
 import 'package:pathfinding/presentation/process/block/process_page_bloc.dart';
 
@@ -134,6 +135,7 @@ class _ProcessPageState extends PageState<ProcessPage, ProcessPageBloc,
         logInfo(notification.percent);
       case ResultsSent():
         logInfo('results sent');
+        context.pushRoute(ResultsRoute());
     }
   }
 }

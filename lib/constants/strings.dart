@@ -11,6 +11,8 @@ class Strings {
   static const String calculationsFinished = 'All calculations has finished, you can send your result to server';
   static const String sendResultsButtonLabel = 'Send results to server';
   static const String resultsSending = 'Your information is sending';
-  static const String fullPercentage = "100%";
+  static const String fullPercentage = '100%';
+  static const String resultListTitle = 'Result list screen';
+  static const String detailsScreenTitle = 'Preview screen';
   static const String wsapi = 'https://flutter.webspark.dev/flutter/api';
 }

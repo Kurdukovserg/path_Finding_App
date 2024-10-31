@@ -43,8 +43,6 @@ extension GetItInjectableX on _i174.GetIt {
       environmentFilter,
     );
     final registerModule = _$RegisterModule();
-    gh.factory<_i813.PreviewPageBloc>(() => _i813.PreviewPageBloc());
-    gh.factory<_i116.ResultsPageBloc>(() => _i116.ResultsPageBloc());
     gh.singleton<_i361.Dio>(() => registerModule.dio());
     gh.singleton<_i1061.AppRouter>(() => _i1061.AppRouter());
     gh.singleton<_i157.HttpClientsService>(
@@ -59,6 +57,10 @@ extension GetItInjectableX on _i174.GetIt {
           gh<_i1050.FieldRemoteDataSource>(),
           gh<_i8.PathFindingService>(),
         ));
+    gh.factory<_i813.PreviewPageBloc>(
+        () => _i813.PreviewPageBloc(gh<_i28.FieldsRepository>()));
+    gh.factory<_i116.ResultsPageBloc>(
+        () => _i116.ResultsPageBloc(gh<_i28.FieldsRepository>()));
     gh.factory<_i564.SaveUriAndGetFields>(
         () => _i564.SaveUriAndGetFieldsImpl(gh<_i28.FieldsRepository>()));
     gh.factory<_i133.SendResultsUseCase>(

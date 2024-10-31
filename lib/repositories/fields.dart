@@ -21,6 +21,8 @@ abstract class FieldsRepository {
   Stream<PathFinderResult> get resultsStream;
 
   Future<Either<Failure, ResultsApiResponce>> sendResults();
+
+  List<PathFinderResult> get cachedResults;
 }
 
 @Singleton(as: FieldsRepository)
@@ -34,6 +36,9 @@ class FieldsRepositoryImpl implements FieldsRepository {
   bool shouldUpdateResultsStream = true;
   final List<PathFinderResult> _cachedResults = [];
   PathFinderResult? _cachedResultValue;
+
+  @override
+  List<PathFinderResult> get cachedResults => _cachedResults;
 
   PathFinderResult? get _cachedResult => _cachedResultValue;
 

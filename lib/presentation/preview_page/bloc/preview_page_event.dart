@@ -5,10 +5,5 @@ sealed class PageEvent {}
 
 @freezed
 class Init with _$Init implements PageEvent {
-  const factory Init()=_Init;
-}
-
-@freezed
-class OpenDetails with _$OpenDetails implements PageEvent {
-  const factory OpenDetails({required String id})=_OpenDetails;
+  const factory Init({required String id})=_Init;
 }

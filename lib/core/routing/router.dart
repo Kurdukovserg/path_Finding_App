@@ -27,11 +27,11 @@ class AppRouter extends RootStackRouter {
       ),
       AutoRoute(
         path: '/results',
-        page: PreviewRoute.page,
+        page: ResultsRoute.page
       ),
       AutoRoute(
-        path: '/details/:${ResultsPage.pathIdParamName}',
-        page: ResultsRoute.page,
+        path: '/details/:${PreviewPage.pathIdParamName}',
+        page: PreviewRoute.page,
       ),
     ];
   }
