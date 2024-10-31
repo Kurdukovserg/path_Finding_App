@@ -10,7 +10,7 @@ class InitialState with _$InitialState implements PageBlocState {
 
 @freezed
 class LoadingState with _$LoadingState implements PageBlocState {
-  const factory LoadingState() = _LoadingState;
+  const factory LoadingState(double? percent) = _LoadingState;
 }
 
 @freezed

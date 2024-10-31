@@ -2,6 +2,7 @@ class Strings {
   Strings._();
 
   static const String homeScreenName = 'Home Screen';
+  static const String dataReceiving = 'Data for processing is receiving';
   static const String computationScreenName = 'Process screen';
   static const String homeScreenText = 'Set valid API base URL in order to continue';
   static const String startButtonLabel = 'Start counting process';

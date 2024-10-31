@@ -52,7 +52,7 @@ class AStarAlgorithm implements PathFindingAlgorithm {
       final currentNode = openSet.reduce((a, b) => a.fScore < b.fScore ? a : b);
 
       if (currentNode == endNode) {
-        return constructPath(currentNode);
+        return constructPath(currentNode, fieldWrapper.id);
       }
 
       openSet.remove(currentNode);
@@ -79,7 +79,7 @@ class AStarAlgorithm implements PathFindingAlgorithm {
       }
     }
 
-    return PathFinderResult(null);
+    return PathFinderResult(fieldWrapper.id, null);
   }
 }
 

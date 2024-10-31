@@ -22,35 +22,72 @@ class _ProcessPageState extends PageState<ProcessPage, ProcessPageBloc,
   Widget buildPage(BuildContext context, PageBlocState state) {
     return Scaffold(
       appBar: PFAppBar(title: Strings.computationScreenName),
-      body: switch (state) {
-        InitialState() => Center(
-            child: CircularProgressIndicator(),
-          ),
-        LoadingState() => Center(
-            child: SizedBox(
-              height: 100,
-              width: 100,
-              child: CircularProgressIndicator(
-
+      body: AnimatedSwitcher(
+        duration: kThemeAnimationDuration,
+        child: switch (state) {
+          InitialState() => Center(
+              child: CircularProgressIndicator(),
+            ),
+          LoadingState() => Center(
+              child: Column(
+                children: [
+                  SizedBox.square(dimension: 16,),
+                  Text('${(state.percent??0 * 100).toInt()}%'),
+                  SizedBox.square(dimension: 16,),
+                  SizedBox(
+                    height: 100,
+                    width: 100,
+                    child: CircularProgressIndicator(
+                      value: state.percent,
+                    ),
+                  ),
+                ],
               ),
             ),
-          ),
-        ErrorState() => Center(
-            child: Text(state.errorMessage),
-          ),
-        UpdatedState() => Column(
-            children: [
-              Text(Strings.calculationsFinished),
-              SizedBox(
-                height: 100,
-                width: 100,
-                child: CircularProgressIndicator(
-                  value: 100,
-                ),
+          ErrorState() => Center(
+              child: Text(state.errorMessage),
+            ),
+          UpdatedState() => Padding(
+              padding: MediaQuery.paddingOf(context)
+                  .add(EdgeInsets.symmetric(horizontal: 16.0)),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Expanded(
+                    child: Column(
+                      children: [
+                        SizedBox.square(dimension: 32,),
+                        Text(Strings.calculationsFinished),
+                        SizedBox.square(dimension: 16,),
+                        Text('100%'),
+                        SizedBox.square(dimension: 16,),
+                        SizedBox(
+                          height: 100,
+                          width: 100,
+                          child: CircularProgressIndicator(
+                            value: 100,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Row(
+                    children: [
+                      Expanded(
+                        child: FilledButton(
+                          onPressed: () {},
+                          child: Text(
+                            Strings.sendResultsButtonLabel,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
               ),
-            ],
-          ),
-      },
+            ),
+        },
+      ),
     );
   }
 

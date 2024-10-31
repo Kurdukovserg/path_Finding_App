@@ -44,7 +44,13 @@ class _HomePageState extends State<HomePage> {
           builder: (BuildContext context, PageBlocState state) {
             return switch (state) {
               LoadingState() => Center(
-                  child: CircularProgressIndicator(),
+                  child: Column(
+                    children: [
+                      Text(Strings.dataReceiving),
+                      SizedBox.square(dimension: 16,),
+                      CircularProgressIndicator(),
+                    ],
+                  ),
                 ),
               ErrorState() => Center(
                   child: Text(state.errorMessage),

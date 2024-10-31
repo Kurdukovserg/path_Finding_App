@@ -8,7 +8,7 @@ abstract class PathFindingAlgorithm {
   Future<PathFinderResult> compute(PathfinderField field);
 }
 
-PathFinderResult constructPath(PathNode? endNode) {
+PathFinderResult constructPath(PathNode? endNode, String id) {
   if (endNode == null) {
     throw Exception("End node not found in path");
   }
@@ -26,5 +26,5 @@ PathFinderResult constructPath(PathNode? endNode) {
   nodes.insert(0, currentNode);
 
 
-  return PathFinderResult(nodes);
+  return PathFinderResult(id, nodes);
 }

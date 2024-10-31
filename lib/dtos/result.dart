@@ -2,6 +2,7 @@ import 'package:pathfinding/dtos/path_node.dart';
 
 class PathFinderResult {
   final List<PathNode>? pathNodes;
+  final String id;
 
   String get resultingPath {
     if(pathNodes == null) {
@@ -11,5 +12,5 @@ class PathFinderResult {
       return pathNodes!.map((el) => '(${el.x},${el.y})').join('->');
     }
   }
-  PathFinderResult(this.pathNodes);
+  PathFinderResult(this.id, this.pathNodes);
 }

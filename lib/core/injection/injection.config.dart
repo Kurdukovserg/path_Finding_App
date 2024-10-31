@@ -48,16 +48,16 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i245.PathFindingApiService(gh<_i157.HttpClientsService>()));
     gh.factory<_i1050.FieldRemoteDataSource>(() =>
         _i1050.FieldRemoteDataSourceImpl(gh<_i245.PathFindingApiService>()));
-    gh.singleton<_i28.FieldsRepository>(
-        () => _i28.FieldsRepositoryImpl(gh<_i1050.FieldRemoteDataSource>()));
-    gh.factory<_i1006.ProcessPageBloc>(() => _i1006.ProcessPageBloc(
-          gh<_i28.FieldsRepository>(),
+    gh.singleton<_i28.FieldsRepository>(() => _i28.FieldsRepositoryImpl(
+          gh<_i1050.FieldRemoteDataSource>(),
           gh<_i8.PathFindingService>(),
         ));
     gh.factory<_i564.SaveUriAndGetFields>(
         () => _i564.SaveUriAndGetFieldsImpl(gh<_i28.FieldsRepository>()));
     gh.factory<_i11.HomePageBloc>(
         () => _i11.HomePageBloc(gh<_i564.SaveUriAndGetFields>()));
+    gh.factory<_i1006.ProcessPageBloc>(
+        () => _i1006.ProcessPageBloc(gh<_i28.FieldsRepository>()));
     return this;
   }
 }
