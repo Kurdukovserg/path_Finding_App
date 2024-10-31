@@ -15,8 +15,12 @@ import 'package:pathfinding/core/injection/injection.dart' as _i422;
 import 'package:pathfinding/core/routing/router.dart' as _i1061;
 import 'package:pathfinding/data_sources/remote.dart' as _i1050;
 import 'package:pathfinding/presentation/home/bloc/home_page_bloc.dart' as _i11;
+import 'package:pathfinding/presentation/preview_page/bloc/preview_page_bloc.dart'
+    as _i813;
 import 'package:pathfinding/presentation/process/block/process_page_bloc.dart'
     as _i1006;
+import 'package:pathfinding/presentation/results/bloc/results_page_bloc.dart'
+    as _i116;
 import 'package:pathfinding/repositories/fields.dart' as _i28;
 import 'package:pathfinding/services/network/api.dart' as _i245;
 import 'package:pathfinding/services/network/network_sevice.dart' as _i157;
@@ -39,6 +43,8 @@ extension GetItInjectableX on _i174.GetIt {
       environmentFilter,
     );
     final registerModule = _$RegisterModule();
+    gh.factory<_i813.PreviewPageBloc>(() => _i813.PreviewPageBloc());
+    gh.factory<_i116.ResultsPageBloc>(() => _i116.ResultsPageBloc());
     gh.singleton<_i361.Dio>(() => registerModule.dio());
     gh.singleton<_i1061.AppRouter>(() => _i1061.AppRouter());
     gh.singleton<_i157.HttpClientsService>(
