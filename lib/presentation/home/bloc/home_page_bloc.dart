@@ -4,7 +4,6 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:pathfinding/core/bloc/notifiable_bloc.dart';
 import 'package:pathfinding/dtos/field.dart';
-import 'package:pathfinding/dtos/field_dot.dart';
 import 'package:pathfinding/use_cases/save_url_and_get_fields.dart';
 
 part 'home_page_bloc.freezed.dart';

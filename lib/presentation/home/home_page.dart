@@ -1,9 +1,10 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:loggy/loggy.dart';
 import 'package:pathfinding/constants/strings.dart';
 import 'package:pathfinding/core/bloc/view.dart';
+import 'package:pathfinding/core/routing/router.dart';
+import 'package:pathfinding/presentation/components/app_bar.dart';
 import 'package:pathfinding/presentation/home/bloc/home_page_bloc.dart';
 import 'package:pathfinding/services/validation.dart';
 
@@ -25,15 +26,8 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     _apiFieldController.text = Strings.wsapi;
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.primary,
-        title: Text(
-          Strings.homeScreenName,
-          textAlign: TextAlign.start,
-          style: TextStyle(
-            color: Theme.of(context).colorScheme.surface,
-          ),
-        ),
+      appBar: PFAppBar(
+        title: Strings.homeScreenName,
       ),
       body: Padding(
         padding: MediaQuery.paddingOf(context)
@@ -44,7 +38,7 @@ class _HomePageState extends State<HomePage> {
               (BuildContext context, PageNotification notification) {
             switch (notification) {
               case FieldsFetchedNotification():
-                logInfo(notification.fields.first.field);
+                context.pushRoute(ProcessRoute());
             }
           },
           builder: (BuildContext context, PageBlocState state) {

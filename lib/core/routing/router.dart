@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:injectable/injectable.dart';
 import 'package:pathfinding/presentation/home/home_page.dart';
+import 'package:pathfinding/presentation/process/process_page.dart';
 
 part 'router.gr.dart';
 
@@ -16,6 +17,10 @@ class AppRouter extends RootStackRouter {
         path: '/',
         page: HomeRoute.page,
         initial: true,
+      ),
+      AutoRoute(
+        path: '/process',
+        page: ProcessRoute.page,
       ),
     ];
   }

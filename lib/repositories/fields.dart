@@ -8,6 +8,7 @@ abstract class FieldsRepository{
   void reset();
   void setup(String uri);
   Future<Either<Failure, List<PathfinderField>>> getFields();
+  List<PathfinderField> get fields;
 
 }
 
@@ -17,13 +18,17 @@ class FieldsRepositoryImpl implements FieldsRepository{
 
   final FieldRemoteDataSource _remote;
   String? baseUri;
+  List<PathfinderField>? _cachedFields;
+
+  @override
+  List<PathfinderField> get fields => _cachedFields??[];
 
   @override
   Future<Either<Failure, List<PathfinderField>>> getFields() async {
     final responseOrFailure = await _remote.getFields(baseUri!);
     return responseOrFailure.fold((failure) => left(failure), (response) {
-      final fieldList = response.fields;
-      return right(fieldList);
+      _cachedFields = response.fields;
+      return right(_cachedFields!);
     });
   }
 

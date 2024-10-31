@@ -1,5 +1,4 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:loggy/loggy.dart';
 import 'package:pathfinding/dtos/field.dart';
 import 'package:pathfinding/dtos/field_dot.dart';
 import 'package:pathfinding/models/field_dot_model.dart';
