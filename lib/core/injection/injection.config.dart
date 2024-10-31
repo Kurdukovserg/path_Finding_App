@@ -25,6 +25,7 @@ import 'package:pathfinding/services/path_finding/astar.dart' as _i1006;
 import 'package:pathfinding/services/path_finding/path_finding_service.dart'
     as _i8;
 import 'package:pathfinding/use_cases/save_url_and_get_fields.dart' as _i564;
+import 'package:pathfinding/use_cases/send_results.dart' as _i133;
 
 extension GetItInjectableX on _i174.GetIt {
 // initializes the registration of main-scope dependencies inside of GetIt
@@ -54,10 +55,14 @@ extension GetItInjectableX on _i174.GetIt {
         ));
     gh.factory<_i564.SaveUriAndGetFields>(
         () => _i564.SaveUriAndGetFieldsImpl(gh<_i28.FieldsRepository>()));
+    gh.factory<_i133.SendResultsUseCase>(
+        () => _i133.SendResultsUseCaseImpl(gh<_i28.FieldsRepository>()));
     gh.factory<_i11.HomePageBloc>(
         () => _i11.HomePageBloc(gh<_i564.SaveUriAndGetFields>()));
-    gh.factory<_i1006.ProcessPageBloc>(
-        () => _i1006.ProcessPageBloc(gh<_i28.FieldsRepository>()));
+    gh.factory<_i1006.ProcessPageBloc>(() => _i1006.ProcessPageBloc(
+          gh<_i28.FieldsRepository>(),
+          gh<_i133.SendResultsUseCase>(),
+        ));
     return this;
   }
 }

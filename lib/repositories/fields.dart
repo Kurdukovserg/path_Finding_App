@@ -4,7 +4,6 @@ import 'package:pathfinding/core/failures/failure.dart';
 import 'package:pathfinding/data_sources/remote.dart';
 import 'package:pathfinding/dtos/field.dart';
 import 'package:pathfinding/dtos/result.dart';
-import 'package:pathfinding/models/field_dot_model.dart';
 import 'package:pathfinding/models/results_request.dart';
 import 'package:pathfinding/models/results_response.dart';
 import 'package:pathfinding/services/path_finding/path_finding_service.dart';
@@ -90,13 +89,16 @@ class FieldsRepositoryImpl implements FieldsRepository {
     List<ResultApiRequest> results = [];
     for (int i = 0; i < _cachedResults.length; i++) {
       final result = _cachedResults[i];
-      results.add(ResultApiRequest(
+      results.add(
+        ResultApiRequest(
           id: result.id,
           result: Steps(
               steps: result.pathNodes!
-                  .map((e) => FieldDotModel(x: e.x, y: e.y))
-                  .toList()),
-          path: result.resultingPath));
+                  .map((e) => DotModel(x: e.x, y: e.y))
+                  .toList(),
+              path: result.resultingPath),
+        ),
+      );
     }
     final resOrFailure = await _remote.sendResults(baseUri!, results);
     return resOrFailure.fold(left, (res) => right(res));

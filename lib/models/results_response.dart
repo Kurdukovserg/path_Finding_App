@@ -10,7 +10,7 @@ class ResultsApiResponce with _$ResultsApiResponce {
   const factory ResultsApiResponce({
     @JsonKey(name: 'error') @Default(false) bool error,
     @JsonKey(name: 'message') String? message,
-    @JsonKey(name: 'data') ResultData? resultData,
+    @JsonKey(name: 'data') @Default([]) List<ResultData?> resultData,
   }) = _ResultsApiResponce;
 
   factory ResultsApiResponce.fromJson(Map<String, dynamic> json) =>
@@ -25,7 +25,8 @@ class ResultData with _$ResultData {
   const factory ResultData({
     @JsonKey(name: 'id') required String id,
     @JsonKey(name: 'correct') @Default(true) correct,
-}) = _ResultData;
+  }) = _ResultData;
 
-  factory ResultData.fromJson(Map<String, dynamic> json) => _$ResultDataFromJson(json);
+  factory ResultData.fromJson(Map<String, dynamic> json) =>
+      _$ResultDataFromJson(json);
 }

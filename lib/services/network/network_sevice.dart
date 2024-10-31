@@ -21,6 +21,7 @@ class HttpClientsServiceImpl implements HttpClientsService {
   void reset() {
     _apiClient.options.contentType = Headers.jsonContentType;
     _apiClient.options.headers['Accept'] = 'application/json';
+    _apiClient.interceptors.add(LogInterceptor(requestBody: true, responseBody: true));
   }
 
   @override

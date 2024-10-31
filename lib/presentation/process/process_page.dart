@@ -1,6 +1,8 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:loggy/loggy.dart';
 import 'package:pathfinding/constants/strings.dart';
+import 'package:pathfinding/core/bloc/notifiable_bloc.dart';
 import 'package:pathfinding/core/bloc/page.dart';
 import 'package:pathfinding/presentation/components/app_bar.dart';
 import 'package:pathfinding/presentation/process/block/process_page_bloc.dart';
@@ -31,9 +33,13 @@ class _ProcessPageState extends PageState<ProcessPage, ProcessPageBloc,
           LoadingState() => Center(
               child: Column(
                 children: [
-                  SizedBox.square(dimension: 16,),
-                  Text('${(state.percent??0 * 100).toInt()}%'),
-                  SizedBox.square(dimension: 16,),
+                  SizedBox.square(
+                    dimension: 16,
+                  ),
+                  Text('${(state.percent ?? 0 * 100).toInt()}%'),
+                  SizedBox.square(
+                    dimension: 16,
+                  ),
                   SizedBox(
                     height: 100,
                     width: 100,
@@ -54,28 +60,19 @@ class _ProcessPageState extends PageState<ProcessPage, ProcessPageBloc,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Expanded(
-                    child: Column(
-                      children: [
-                        SizedBox.square(dimension: 32,),
-                        Text(Strings.calculationsFinished),
-                        SizedBox.square(dimension: 16,),
-                        Text('100%'),
-                        SizedBox.square(dimension: 16,),
-                        SizedBox(
-                          height: 100,
-                          width: 100,
-                          child: CircularProgressIndicator(
-                            value: 100,
-                          ),
-                        ),
-                      ],
-                    ),
+                    child: buildCntent(state),
                   ),
                   Row(
                     children: [
                       Expanded(
                         child: FilledButton(
-                          onPressed: () {},
+                          onPressed: state.sendButtonEnabled
+                              ? () {
+                                  context
+                                      .read<ProcessPageBloc>()
+                                      .add(SendResults());
+                                }
+                              : null,
                           child: Text(
                             Strings.sendResultsButtonLabel,
                           ),
@@ -91,8 +88,52 @@ class _ProcessPageState extends PageState<ProcessPage, ProcessPageBloc,
     );
   }
 
+  Column buildCntent(UpdatedState state) {
+    final String effectiveText = state.sendButtonEnabled
+        ? Strings.calculationsFinished
+        : Strings.resultsSending;
+
+    return Column(
+      children: [
+        SizedBox.square(
+          dimension: 32,
+        ),
+        Text(effectiveText),
+        SizedBox.square(
+          dimension: 16,
+        ),
+        if (state.sendButtonEnabled) ...[
+          Text(Strings.fullPercentage),
+          SizedBox.square(
+            dimension: 16,
+          ),
+        ],
+        SizedBox(
+          height: 100,
+          width: 100,
+          child: CircularProgressIndicator(
+            value: (state.sendButtonEnabled && !state.resultSent) ? 100 : null,
+          ),
+        ),
+        SizedBox.square(
+          dimension: 16,
+        ),
+        if (state.errorMessage?.isNotEmpty ?? false)
+          Text(
+            state.errorMessage!,
+            style: TextStyle(color: Colors.red),
+          ),
+      ],
+    );
+  }
+
   @override
   void onNotification(BuildContext context, PageNotification notification) {
-    // TODO: implement onNotification
+    switch(notification) {
+      case Computed():
+        logInfo(notification.percent);
+      case ResultsSent():
+        logInfo('results sent');
+    }
   }
 }

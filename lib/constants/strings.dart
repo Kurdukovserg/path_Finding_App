@@ -10,5 +10,7 @@ class Strings {
   static const String wrongUriError = 'Base URI is wrong, try else';
   static const String calculationsFinished = 'All calculations has finished, you can send your result to server';
   static const String sendResultsButtonLabel = 'Send results to server';
+  static const String resultsSending = 'Your information is sending';
+  static const String fullPercentage = "100%";
   static const String wsapi = 'https://flutter.webspark.dev/flutter/api';
 }

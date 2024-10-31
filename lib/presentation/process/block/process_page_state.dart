@@ -20,5 +20,9 @@ class ErrorState with _$ErrorState implements PageBlocState {
 
 @freezed
 class UpdatedState with _$UpdatedState implements PageBlocState {
-  const factory UpdatedState() = _UpdatedState;
+  const factory UpdatedState({
+    @Default(false) bool resultSent,
+    @Default(true) bool sendButtonEnabled,
+    String? errorMessage,
+  }) = _UpdatedState;
 }
